@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subdomain_quiz: one
+  subdomain_user: one
+  subdomain_quiz_enrollment: one
+  total: 1
+  out_of: 1
+  pass_or_fail: 1
+
+two:
+  subdomain_quiz: two
+  subdomain_user: two
+  subdomain_quiz_enrollment: two
+  total: 1
+  out_of: 1
+  pass_or_fail: 1

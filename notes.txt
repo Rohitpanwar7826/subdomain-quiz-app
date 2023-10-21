@@ -1,0 +1,313 @@
+open credentials ->
+  EDITOR="nano" rails credentials:edit
+
+read credentials ->
+  Rails.application.credentials.tenant_excluded_subdomain
+
+
+
+
+
+table flow
+  quiz ->
+    title
+    total_questions
+    durations: optional
+    year
+    branch
+
+    associtions
+      has_many :questions
+
+  questions->
+    question
+    weight
+  
+    question
+      has_many :options
+
+    associtions
+      belongs_to :quiz
+
+  options
+    belongs_to :question
+    option
+
+  question_answers (it may be has_and belongs_to many)
+    belongs_to :question
+    belongs_to :option
+
+
+
+
+============================================
+Schema: 
+  Users
+    Id: bigint
+    Name: string
+    Email: string
+    Role: string [student, professor, admin]
+    Password: string
+    Status: string [active/suspend]
+
+  Groups
+    Group_code:
+
+  student_groups
+    student_id: foreign_key
+    Group_id: foreign_key
+    Permission: int [TTP, TVO]
+
+  Levels:
+    Id: bigint
+    Title: String
+
+  assign_classes:
+    Id: bigint
+    User_id: foreign_key
+    level_id: foreign_key 
+
+  Courses:
+    Id: bigint
+    code: String
+    Name: string
+
+  assign_courses:
+    Id: bigint
+    assignable_id: foreign_key
+    assignable_type: string [whom assigns either class or professor]
+    Curriculum_id: foreign_key
+
+  Paper 
+    Id: bigint
+    Name: string
+    duration: string
+    Created_by: string [professor, admin]
+    Curriculum_id: foreign_key
+    level_id: foreign key
+
+  Question 
+    Id: bigint
+    Description: text
+    Duration: string
+    Question_type: string [SingleChoice, MultiChoice, TrueFalse]
+    Attempts: int
+
+  options:
+    Id: bigint
+    Question_Id:  foreign_key
+    option: string   
+    Is_correct: boolean [true, false]
+
+  question_papers:
+    Id: bigint
+    Paper_id: foreign_key
+    Question_id: foreign_key 
+
+  test
+    Paper_id: foreign_key
+    Code: string
+    Testable_id: foreign_key
+    Testable_type: foreign_key
+    Professor_id :foreign_key
+    Schedule_time: DateTime
+   
+  answer_histories:
+    Id: bigint
+    Test_id: integer
+    option_id: foreign key
+    question_id : foreign_key
+    Answer_id : integer
+
+  Answers: 
+    Id : bigint
+    Test_id: integer
+    question_id: foreign_key
+    option_id: foreign_key
+    Marks:  int, 
+    Attempt_duration: string
+    attempts: int
+
+  Marks:
+    Total_attempts: int
+    Score: int
+
+  Images:
+    imagable_id:
+    imagable_type:
+    is_correct :boolean
+
+RelationShip:
+  Between level, professor, student and assign_classes:
+    levels
+      Has_many: assign_classes
+      has_many:  professors, -> {where( role: 'professor')}, through: : assign_classes, 
+      Has_many :students, -> {where(role: 'student')}, through: : assign_classes	
+    assign_classes:   
+      belongs_to: professor, foreign_key: 'user_id'
+      belongs_to: student, foreign_key: 'user_id'    
+
+      Belongs_to: level
+
+    professors:    
+      Has_many: assign_classes
+      #Has_many :professors, ->{where( role: 'professor')}, through: :assign_classes
+      #Has_many :professor_assign_classes, through: :professors, source: :assign_classes
+      Has_many: classes, through: assign_classes, source: :level
+
+    students:
+      Has_one: assign_classes
+     # Has_one :students, ->{where( role: 'student')}, through: :assign_classes
+     # Has_one :student_assign_classes, through: :students, source: :assign_classes
+      Has_one: student_classes, through: assign_classes, source: :level
+
+  Between levels, courses, user, assign_courses
+    levels:
+      Has_many :assign_courses, as: :assignable
+
+    assign_courses:
+      Belongs_to :assignable, polymorphic: true
+      Belongs_to :courses
+    
+    Courses: 
+      Has_many :assign_courses
+      Has_many :levels, through: :assign_courses
+
+    Professor:
+      Has_many :assign_courses, as: :assignable
+
+  Between Questions and Options
+    Questions :
+      has_many : options
+
+    Options:
+      Belongs_to: questions
+
+  Between question, paper and question_paper
+    papers:
+      has_many :Question_papers
+      has_many questions, through: :Question_papers
+
+    Questions:
+      has_many :Question_papers
+      has_many :papers, through: :Question_papers
+
+    Question_papers:
+      belongs_to :paper
+      belongs_to :question
+
+  Between User and Group, student_groups
+    User:
+      Has_many:  student_groups, foreign_key: student_id
+      has _many: groups, through: :student_groups, 
+
+    student_groups:
+      Belongs_to :group
+      Belongs_to :user
+
+    Groups:
+      Has_many:  student_groups,
+      has _many: students, through: :student_groups, 
+
+  Between user,  group, test, paper
+    Tests: 
+      belogs_to: testable, polymorphic: true
+      Belongs_to :paper
+      Belongs_to :professor
+
+    student_groups: 
+      Has_many :tests, as: :testable
+      Has_many :students, -> { where(role: student) }, through: :tests, source: :users
+
+
+    User:
+      Has_many :tests, as: :testable
+      Has_many :professor_assign_test, class_name: :test, foreign_key: :professor_id  
+
+  Between question_papers, papers, answer_histories;
+    answer_histories:
+      belongs_to :question, class_name: question_paper, foreign_key: :question_id
+      belongs_to :student
+
+    question_paper:
+      has_many :answer_histories, primary_key :question_id
+
+    users:
+      has_many :answer_histories, foreign_key: :student_id
+
+  Between reports, student;
+    user:
+      Has_many :reports, as: :result
+
+    report:
+      belongs_to :result, polymorphic: true
+      belongs_to :paper
+      belongs_to :question
+      belongs_to :option
+      belongs_to :given_answer, foreign_key: :option_id
+
+    Student_groups:
+      Has_many :reports, as: :result
+
+  Between question, image, paper
+    Image:
+      belongs_to :imagable
+      has_one_attached :image
+
+    question:
+      has_many :images, as: :imagable
+
+    paper:
+      has_many :images, as: :imagable
+
+  Between paper, curriculum, level
+    Paper:
+      Belongs_to: curriculum
+      Belongs_to :level
+
+    Level:
+      Has_many :papers
+      Has_many :curriculums, through: :papers
+
+  Curriculum:
+    Has_many :papers
+    Has_many :levels, through: :papers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+        // Set the date and time when the quiz will start
+        const quizStartTime = new Date("2023-10-01T08:00:00Z").getTime();
+
+        // Update the countdown every 1 second
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = quizStartTime - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Quiz has started!";
+            }
+        }, 1000);
+    </script>

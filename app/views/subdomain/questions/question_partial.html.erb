@@ -1,0 +1,5 @@
+ <%= turbo_frame_tag "add-question" do%>
+  <%= form_with(model: @quiz, url: quiz_questions_path, method: :post) do |form| %>
+    <%= render 'question_fileds', form: form  %>
+  <% end %>
+ <%end%>

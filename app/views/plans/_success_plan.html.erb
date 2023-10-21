@@ -1,0 +1,9 @@
+<div class="container-fluid w-100 mt-4">
+  <div class="p-1 h-100 w-100">
+    <div class=" w-100">
+      <h5 class="text-info">Congratulations Account has created</h5>
+      <p class="card-text">Click on the subdomain links below to access your created accounts:</p>
+      <%= link_to "#{root_url(subdomain: @account_plan.subdomain)}", root_url(subdomain: @account_plan.subdomain), class: "link mb-2", target: "_blank" %>
+    </div>
+  </div>
+</div>

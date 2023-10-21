@@ -1,0 +1,8 @@
+
+pro:
+  sidekiq_web_mount_point: /admin/sidekiq
+
+:queues:
+  - default
+  - mailers
+  - reports

@@ -1,0 +1,36 @@
+  <div class="w-100 h-100 mt-5 container d-flex justify-content-center align-items-center">
+    <div class="card border-primary h-100 mb-3 w-75" style="max-width: 90rem;">
+      <div class="card-header bg-primary text-white">
+        <h5 class="card-title"><%= @quiz.title %></h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Total Questions:</strong> <%= @quiz.total_questions %>
+        </p>
+        <p class="card-text">
+          <strong>Duration:</strong> <%= @quiz.duration %> Minutes
+        </p>
+        <p class="card-text">
+          <strong>Year:</strong> <%= @quiz.year %>
+        </p>
+        <p class="card-text">
+          <strong>Branch:</strong> <%= @quiz.branch %>
+        </p>
+        <p class="card-text">
+          <strong>Published:</strong>
+          <%= @quiz.is_published ? '<span class="text-success">Yes</span>'.html_safe : '<span class="text-danger">No</span>'.html_safe %>
+        </p>
+
+        <p class="card-text">
+          <strong>Questions:</strong>
+          <%= @quiz.questions.count %>
+        </p>
+        <div class="card-footer d-flex justify-content-evenly mt-4">
+          <%= link_to 'Back', :back, class: 'btn btn-secondary' %>
+          <%= link_to 'Add New Questions', new_quiz_question_path(@quiz), class: 'btn bg-dark text-light' if policy(Subdomain::Question).new? %>
+          <%= link_to 'Edit', edit_quiz_path(@quiz), class: 'btn bg-danger text-light' if policy(Subdomain::Question).new?%>
+          <%= link_to 'Start Exam', exam_path(@quiz), class: 'btn bg-danger text-light' if Subdomain::ExamPolicy.new(current_user, @quiz).show? && quiz_enrollments_exits(@quiz) && exam_date_not_past?(@quiz) || true %>
+        </div>
+      </div>
+    </div>
+  </div>

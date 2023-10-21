@@ -1,0 +1,14 @@
+<%- if flash.present? %>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+          <%- flash.each do |name, msg| -%>
+            <div class="alert alert-danger" role="alert">
+              <%= msg %>
+            </div>
+          <%- end -%>  
+      </div>
+    </div>
+  </div>
+<%- end %>
+

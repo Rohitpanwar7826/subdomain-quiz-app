@@ -1,0 +1,82 @@
+<!-- Hero Section -->
+<%= turbo_frame_tag "new-quiz" %>
+
+<header class="hero bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">Welcome to Quiz App</h1>
+        <p class="lead"><span class="p-2 shadow-lg mb-5 rounded text-bold bg-dark"><%= Current.account.subdomain.titleize %></span> Test your knowledge and have fun!</p>
+        
+        <%= link_to "Quiz-List", generate_role_according_url, class: "btn btn-light btn-lg m-2", data: { turbo_frame: "new-quiz", turbo_cache: false }%>
+      
+        <% if policy(Subdomain::Quiz).new? %>
+            <%= link_to "Add-Quiz", new_quiz_path, class: "btn btn-light btn-lg m-2", data: { turbo_frame: "new-quiz", turbo_cache: false }%>
+        <%end%>
+    </div>
+</header>
+
+<!-- About Section -->
+<section class="about py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae augue orci.</p>
+            </div>
+            <div class="col-md-6">
+                <%= image_tag "quiz_image.jpg", alt:"Quiz Image", class: "img-fluid rounded-circle" %>
+            </div>
+        </div>
+    </div>   
+
+<section class="features bg-light py-5">
+    <div class="container">
+        <h2 class="text-center">Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature">
+                    <i class="fas fa-check-circle fa-3x"></i>
+                    <h3>Easy to Use</h3>
+                    <p>Simple and intuitive interface for a smooth quiz experience.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature">
+                    <i class="fas fa-clock fa-3x"></i>
+                    <h3>Quick Quizzes</h3>
+                    <p>Take short quizzes on various topics in just a few minutes.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature">
+                    <i class="fas fa-trophy fa-3x"></i>
+                    <h3>Compete and Win</h3>
+                    <p>Compete with friends and earn rewards for your knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact py-5">
+    <div class="container">
+      <h2 class="text-center">Contact Us</h2>
+      <p class="text-center">Have questions or feedback? Reach out to us!</p>
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <form>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+<%= content_for :stylesheets do %>
+  <%= stylesheet_link_tag "root/welcome" %>
+<%end%>
+
+<div class=" d-flex flex-column">
+  <div class=" h-50 bg-danger d-flex flex-column align-items-center justify-content-center p-4" data-aos="zoom-in"  >
+    <h1>WELCOME TO QUIZE APP</h1>
+    <p class="text-info">We are providing Custom Subdomain For Your Quiz App..</p>
+  </div>
+  <%= turbo_frame_tag "my-accounts"%>
+  <%= link_to "MY ACCOUNTS", root_path, class: 'text-center mt-4 text-info border-2 p-1' %>
+  <div class="mt-4 bg-danger">
+    <div class="mt-4">
+      <p class="h2 text-center mb-5 text-info">Choose Your Perfect Plans</p>
+    </div>
+    <div class="mt-3 d-flex align-items-center justify-content-evenly shadow p-4 mb-5 bg-white rounded">
+      <%@planes.each do |plan| %>
+        <%= turbo_frame_tag "plan-#{plan.id}" %>
+        <div class="" data-aos="fade-right">
+          <div class="w-100 card d-flex align-items-center justify-content-center p-0">
+            <div class="ribon">
+              <p class="text-info p-0">R-K</p>
+            </div>
+            <p class="h-1 pt-5"><%= plan.name %></p>
+            <span class="price p-2">
+              <sup class="sup">Rs.</sup>
+              <span class="number"><%= plan.price %></span>
+            </span>
+            <ul class="w-100 p-2 m-0 mb-2 list-unstyled text-muted">
+              <li class="p-2 bg-info w-100">No Students <span class="font-bold p-1 text-danger h6"><%= plan.no_students %></span></li>
+              <li class="p-2 bg-info w-100">Per Month charges <span class="font-bold p-1 text-danger h6"><%= plan.per_month %></span></li>
+              <li class="p-2 bg-info w-100">Is Unlimited <span class="font-bold p-1 text-danger h6"><%= plan.is_unlimited ? 'Yes' : 'No' %></span></li>
+            </ul>
+            <%= link_to "Get started", plan_path(plan), class: "btn btn-primary", data: { turbo_frame: "plan-#{plan.id}" ,turbo_cache: false } %>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

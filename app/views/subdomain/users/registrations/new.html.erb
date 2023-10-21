@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="mt-4">
+    <div class="mt-4">
+      <div class="mt-5">
+        <div class="container text-center mt-5">
+          <h1 class="text-primary">WELCOME BACK TO</h1>
+          <p>| <span class="text-info"><%= request.subdomain.titleize %></span> |</p>
+        </div>
+          <div class="mt-5 p-5 shadow-lg bg-body rounded">
+            <h2 class="text-center">Sign up</h2>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation' }) do |f| %>
+              <%= render "shared/errors", resource: resource %>
+
+              <div class="mb-3">
+                <%= f.label :first_name, class: "form-label" %>
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :last_name, class: "form-label" %>
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :email, class: "form-label" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :i_card_no_or_roll_no, class: "form-label" %>
+                <%= f.text_field :i_card_no_or_roll_no, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :branch, class: "form-label" %>
+                <%= f.select :branch,  options_for_select(Subdomain::User.branches.map { |branch, _value| [branch.humanize.upcase, branch] }), {prompt: 'Please select Branch'}, class: "form-select form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :year, class: "form-label" %>
+                <%= f.select :year,  options_for_select(Subdomain::User.years.map { |year, _value| [year.humanize, year] }), {prompt: 'Please select Year'}, class: "form-select form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :github_url, "Github Url", class: "form-label" %>
+                <%= f.text_field :github_url, autofocus: true, autocomplete: "github_url", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :linked_in_url, "LinkedIn Url", class: "form-label" %>
+                <%= f.text_field :linked_in_url, autofocus: true, autocomplete: "linked_in_url", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :roles, "Select Roles", class: "form-label"  %>
+               <select class="form-select p-2 m-0" id="role_ids" name="user[role_ids][]" required>
+                  <option value="">Please Select Role</option>
+                  <% Role.all.uniq{ |obj| obj.name }.each do |role| %>
+                    <option value="<%= role.id %>" class="p-4 m-2"><%= role.name.titleize %></option>
+                  <% end %>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :password, class: "form-label" %>
+                <% if @minimum_password_length %>
+                  <small class="form-text text-muted"><em>(<%= @minimum_password_length %> characters minimum)</em></small>
+                <% end %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :password_confirmation, class: "form-label" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.submit "Sign up", class: "btn btn-primary w-100" %>
+              </div>
+            <% end %>
+
+            <%= render "admin_users/shared/links" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<%= turbo_frame_tag "new-quiz" do %>
+    <a class="p-0 m-0 w-0 h-0 d-done" data-controller="subdomain--quizzes" data-bs-toggle="modal" data-bs-target="#new-quizzes"></a>
+
+    <div class="modal fade" id="new-quizzes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" data-controller="subdomain--enroll-students">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="staticBackdropLabel">Quiz List</h5>
+            <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= turbo_frame_tag "quiz-form" do %>
+              <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col" class="col-6">Quiz Name</th>
+                  <th scope="col">Student Count</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @quizzes.includes(:quiz_enrollments).each_with_index do |quiz, index| %>
+                  <tr>
+                    <th scope="row"><%= index+1 %></th>
+                    <td><%= quiz.title %></td>
+                    <td><span id="student-count"><%= quiz.quiz_enrollments.count %></span></td>
+                    <td>
+                       <button class="bg-success text-light p-1" value="<%= quiz.id %>" id="join-btn">
+                          <%= find_student_enroll_or_not(current_user, quiz) %>
+                       </button>
+                    </td>
+                    <td class="d-flex justify-content-center align-items-center">
+                      <%=link_to "Visit", quiz_path(quiz), data: { turbo: false }, class: "p-2 bg-info" %>
+                    </td>
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <% end %>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<%end%>

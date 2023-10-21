@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  total_questions: 1
+  duration: 2023-09-07 01:22:07
+  year: 1
+  branch: 1
+
+two:
+  title: MyString
+  total_questions: 1
+  duration: 2023-09-07 01:22:07
+  year: 1
+  branch: 1

@@ -1,0 +1,47 @@
+<%= turbo_frame_tag "plan-#{@plan.id}" do %>
+  <a class="p-0 m-0 w-0 h-0 d-done" data-controller="plans" id="open-action-plan-modal" data-bs-toggle="modal" data-bs-target="#plan-1-<%= @plan.id %>">
+  </a>
+
+  <div class="modal fade" id="plan-1-<%= @plan.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="staticBackdropLabel">Create Account</h5>
+          <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= turbo_frame_tag "form-plan-#{@plan.id}" do %>
+            <%= form_with model: @account_plan, url: plans_path do |form| %>
+              <%= turbo_frame_tag "error-#{@plan.id}" do %>
+                <%= render "shared/errors", resource: @account_plan %>
+              <% end %>
+
+              <%= form.label :plan, "Select a Plan" %>
+              <%= form.select :plan, options_for_select({ @plan.name => @plan.id }), {}, class: 'form-select bg-secondary text-light mt-3' %>
+
+              <%= form.label :name, "Account Name", class: "mt-3 p-1" %>
+              <%= form.text_field :name, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+              <%= form.label :subdomain, "Subdomain", class: "mt-3 p-1"%>
+              <%= form.text_field :subdomain, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+              <%= form.label :title, "Account Title", class: "mt-3 p-1"%>
+              <%= form.text_field :title, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+              <%= form.label :target_id, "Account Sign Id", class: "mt-3 p-1"%>
+              <%= form.text_field :target_id, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+              <%= form.label :default_locale, "Account Default Locale", class: "mt-3 p-1"%>
+              <%= form.text_field :default_locale, value: "en-US", class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+              <%= form.submit "Create Account", class: 'btn btn-primary mt-4' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

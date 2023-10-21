@@ -1,0 +1,70 @@
+<%= turbo_frame_tag "new-quiz" do %>
+    <a class="p-0 m-0 w-0 h-0 d-done" data-controller="subdomain--quizzes" data-bs-toggle="modal" data-bs-target="#new-quizzes"></a>
+
+    <div class="modal fade" id="new-quizzes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="staticBackdropLabel">Create Quiz</h5>
+            <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= turbo_frame_tag "quiz-form" do %>
+              <%= form_with model: @quiz, url: quizzes_path do |form| %>
+                <%= turbo_frame_tag "errors" do %>
+                  <%= render "shared/errors", resource: @quiz %>
+                <% end %>
+
+                <%= form.label :title, class: "mt-3 p-1" %>
+                <%= form.text_field :title, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+                <%= form.label :total_questions, class: "mt-3 p-1" %>
+                <%= form.text_field :total_questions, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+                <%= form.label :duration, class: "mt-3 p-1" %>
+                <%= form.text_field :duration, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+
+
+                <%= form.label :branch, class: "mt-3" %>
+                <%= form.select :branch, options_for_select(Subdomain::Quiz.branches.inject(Hash.new){ |h, (k, _)| h.merge("#{k}": k)}), {:prompt=>"Select A Branch"}, class: 'form-select bg-secondary text-light mt-3' %>
+
+                <%= form.label :year, class: "mt-3" %>
+                <%= form.select :year, options_for_select(Subdomain::Quiz.years.inject(Hash.new){ |h, (k, _)| h.merge("#{k}": k)}), {:prompt=>"Select A Year"}, class: 'form-select bg-secondary text-light mt-3' %>
+
+                <div class="my-2">
+                  <%= form.label :published, class: 'form-label mt-3 mr-3' %>
+                  <%= form.check_box :is_published, class: 'form-check-input mt-3 ml-4', style: 'padding: 10px;' %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.label :test_date, class: 'form-label mt-3' %>
+                
+                  <%= form.date_field :test_date_time, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
+                  <select name="subdomain_quiz[test_time_hour]" class="form-control bg-secondary text-light">
+                    <% (1..12).each do |hour| %>
+                      <option value="<%= hour %>"><%= sprintf('%02d', hour) %></option>
+                    <% end %>
+                  </select>
+                  <select name="subdomain_quiz[test_time_minute]" class="form-control bg-secondary text-light">
+                    <% (0..59).each do |minute| %>
+                      <option value="<%= minute %>"><%= sprintf('%02d', minute) %></option>
+                    <% end %>
+                  </select>
+                  <select name="subdomain_quiz[test_time_ampm]" class="form-control bg-secondary text-light">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
+
+
+                <%= form.submit "Create Quiz", class: 'btn btn-primary mt-4' %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<%end%>

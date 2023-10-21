@@ -1,0 +1,19 @@
+<div class="container mt-5" data-controller="questions">
+  <h1 class="mb-4 p-1 text-center bg-danger text-info">Create Quiz Questions</h1>
+    <h5 class="bg-info p-2 title">Title: <%= @quiz.title %></h5>
+    <%= form_with(model: @quiz, url: quiz_questions_path, method: :post) do |form| %>
+    <%= turbo_frame_tag "errors" do %>
+      <%= render "shared/errors", resource: @quiz %>
+    <% end %>
+    <%= render 'question_fileds', form: form  %>
+    
+    <%= turbo_frame_tag "add-question" %>
+    <%= link_to "Add one more Question", "#", class: 'btn btn-info', data: { action: "click->questions#handleNewFormQuestions" }%>
+    <div class="d-flex justify-content-center align-items-center">
+      <%= form.submit 'Add Question', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+    

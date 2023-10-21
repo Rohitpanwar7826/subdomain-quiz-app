@@ -1,0 +1,10 @@
+<div class="container d-flex justify-content-center align-items-center mt-5 bg-dark text-light p-5 shadow-lg mb-5 rounded bg-dark">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="large-text">Quiz Will Start Soon</h1>
+                <div class="countdown-container" data-controller="subdomain--count-down-timer" data-subdomain--count-down-timer-timer="<%= @quiz.test_date_time %>" data-subdomain--count-down-timer-quiz-id="<%= @quiz.id %>" >
+                    <p class="countdown h3">Quiz starts in: <span id="countdown" class="text-info h1">LOADING...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
