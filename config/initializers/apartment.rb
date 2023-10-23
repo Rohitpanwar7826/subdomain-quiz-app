@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require "./lib/subdomain_excluded"
 # You can have Apartment route to the appropriate Tenant by adding some Rack middleware.
 # Apartment can support many different "Elevators" that can take care of this routing to your data.
 # Require whichever Elevator you're using below or none if you have a custom one.
@@ -116,6 +116,6 @@ end
 # Rails.application.config.middleware.use Apartment::Elevators::Domain
 Rails.application.config.middleware.use Apartment::Elevators::Subdomain
 
-Apartment::Elevators::Subdomain.excluded_subdomains = Rails.application.credentials.tenant_excluded_subdomain
+Apartment::Elevators::Subdomain.excluded_subdomains = SubdomainExcluded.list
 # Rails.application.config.middleware.use Apartment::Elevators::FirstSubdomain
 # Rails.application.config.middleware.use Apartment::Elevators::Host

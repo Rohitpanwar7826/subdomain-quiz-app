@@ -18,7 +18,7 @@ module QuizApp
       g.orm :active_record, primary_key_type: :uuid
     end
     config.middleware.use Apartment::Elevators::Subdomain
-    config.hosts << Rails.application.credentials.tenant_whitelist_subdomain
+    config.hosts << ".lvh.me"
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 

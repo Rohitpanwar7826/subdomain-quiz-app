@@ -6,7 +6,7 @@ class SubdomainContraints
   end
 
   def route_constraints_for_excluded_subdomain(request)
-    Rails.application.credentials.tenant_excluded_subdomain.include?(request.subdomain)
+    SubdomainExcluded.list.include?(request.subdomain)
   end
 
   def is_validate_url(request)

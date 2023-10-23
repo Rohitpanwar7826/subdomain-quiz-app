@@ -93,6 +93,3 @@ gem 'requestjs-rails'
 gem 'chronic'
 
 gem 'sidekiq-batch'
-source "https://gems.contribsys.com/" do
-  gem 'sidekiq-pro'
-end
