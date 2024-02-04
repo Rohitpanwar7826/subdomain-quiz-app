@@ -8,7 +8,7 @@ class Subdomain::QuizzesController < ApplicationController
 
   def index
     authorize Subdomain::Quiz
-    @quizzes = current_user.quizzes
+    @quizzes = current_user.quizzes.soon
   end
 
   def new

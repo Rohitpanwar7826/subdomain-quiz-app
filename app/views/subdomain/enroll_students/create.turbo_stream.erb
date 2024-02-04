@@ -1,8 +1,12 @@
-<%= turbo_stream.update "quiz-test-#{@quiz.id}" do %>
+<%= turbo_stream.update "student-count-#{@quiz.id}" do %>
+  <%= @quiz.quiz_enrollments.count %>
+<%end%>
+
+<%= turbo_stream.replace "quiz-test-#{@quiz.id}" do %>
   <%if @is_quiz_enrollment_new %>
-    <span id="quiz-test-<%= @quiz_id %>" class='bg-danger' >Unenroll</span>
+    <span id="quiz-test-<%= @quiz.id %>" class='p-1 bg-danger' >Unenroll</span>
   <%else%>
-    <span id='quiz-test-<%= @quiz_id %>' class='bg-success' >Enroll</span>
+    <span id='quiz-test-<%= @quiz.id %>' class='bg-success' >Enroll</span>
   <%end%>
 <%end%>
 

@@ -36,7 +36,7 @@ class Subdomain::QuestionsController < ApplicationController
 
 
     def schedule_job_quiz_report
-      jid = Subdomain::ScheduleQuizJob.perform_in((@quiz.test_date_time + @quiz.duration.minutes) , Current.account_id, @quiz.id) if @quiz.is_published
-      @quiz.update(jid: jid) if jid.present?
+      jid = Subdomain::ScheduleQuizJob.perform_in((@quiz.test_date_time + @quiz.duration.minutes), Current.account_id, @quiz.id)
+      @quiz.update({jid: jid, is_published: true})
     end
 end

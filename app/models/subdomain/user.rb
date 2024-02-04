@@ -15,7 +15,9 @@ class Subdomain::User < ApplicationRecord
 
   has_many :quiz_enrollments, foreign_key: 'subdomain_user_id',  class_name: 'Subdomain::QuizEnrollment'
 
-  has_many :enrolled_quizzes, through: :quiz_enrollments,  class_name: 'Subdomain::Quiz', source: :subdomain_quiz
+  has_many :enrolled_quizzes, through: :quiz_enrollments,  class_name: 'Subdomain::Quiz', source: :quiz
+
+  has_many :complete_quizzes, -> {where({subdomain_quiz_enrollments: {status: Subdomain::QuizEnrollment.statuses[:complete]}})}, class_name: 'Subdomain::Quiz', through: :quiz_enrollments, source: :quiz
 
   has_many :reports, class_name: "Subdomain::Report", foreign_key: "subdomain_user_id"
 

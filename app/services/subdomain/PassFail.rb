@@ -1,7 +1,7 @@
 module Subdomain
   class PassFail < Base
     class << self
-      PASS_FAIL_STATUS = { pass: 'passed', fail: 'fail' }
+      PASS_FAIL_STATUS = { pass: 'passed', fail: 'fail' }.freeze
       def call(total, user_total)
         passing_marks = minimum_mark_to_pass_student(total)
         user_total >= passing_marks ? PASS_FAIL_STATUS[:pass] : PASS_FAIL_STATUS[:fail]
