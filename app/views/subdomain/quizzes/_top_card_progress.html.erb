@@ -1,0 +1,9 @@
+<div class="p-6 mb-6 my-2 bg-white rounded shadow">
+  <div class="d-flex align-items-center justify-content-between mb-6">
+    <span class="badge bg-primary-light text-primary rounded-pill text-2xl p-2"><%= quiz.branch %></span>
+  </div>
+  <div class="mb-4 p-4">
+    <h3 class="mb-2 text-success h3"><%= quiz.title %></h3>
+    <p class="small text-secondary"><%= quiz.description.length > 130 ? "#{quiz.description.slice(0, 130)}..." : quiz.description %></p>
+  </div>
+</div>

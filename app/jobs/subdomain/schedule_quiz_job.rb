@@ -65,4 +65,3 @@ class Subdomain::ScheduleQuizJob < BaseJob
     quiz.complete!
   end
 end
-

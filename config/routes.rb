@@ -34,7 +34,17 @@ Rails.application.routes.draw do
     root 'home#index', as: :subdomain_root
     
     scope module: :subdomain do
+      resources :results, only: [:index, :show] do
+        member do
+          get 'user/:student_id', to: 'results#student_result'
+        end
+      end
       resources :quizzes do
+        collection do
+          get :pending
+          get :today
+          get :complete
+        end
         get 'question/partial', to: 'questions#question_partial'
         resources :questions, only: [:create, :new]
       end
@@ -50,6 +60,10 @@ Rails.application.routes.draw do
       :registrations => 'subdomain/users/registrations', 
       :sessions => "subdomain/users/sessions"
     }
-    get 'home', to: 'home#index'
+    resources :home do
+      collection do
+        get :daily_progress
+      end
+    end
   end
 end

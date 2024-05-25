@@ -1,3 +1,8 @@
+company data:
+  email: hr@stackify.org
+  Password: hr@stackify.org4#
+
+
 open credentials ->
   EDITOR="nano" rails credentials:edit
 
@@ -276,38 +281,48 @@ RelationShip:
 
 
 
+need to change flow according
+  quiz
+    quiz_enrollment
+
+  base_line_1
+  setiment_survary_1
+  core_content
+  product_experince_survey
+  finnal_assessment
+
+  action_task
+    action_plane:
+      task
 
 
 
+// Abhishak sir interview
+
+// third party
+stripe 
+twilio 
+cloudinary
+
+In the two tables (cricketers and footballers) connected to players table present with a common connecting column player_id,
+get the cricketers (from cricketers table) who are not a part of footballers table without using any sub-query
 
 
 
+Cricketer
+has_many :players
+
+
+Footballer
+has_many :players
 
 
 
+Cricketer.joins(:players).where.not()
 
-<script>
-        // Set the date and time when the quiz will start
-        const quizStartTime = new Date("2023-10-01T08:00:00Z").getTime();
 
-        // Update the countdown every 1 second
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = quizStartTime - now;
+Find the numbers in array which are greater than all the elements to the rightside of them
+Input: [2, 4, 3, 29, 14, 10, 11]
 
-            // Calculate days, hours, minutes, and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the countdown
-            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-            // If the countdown is over, display a message
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "Quiz has started!";
-            }
-        }, 1000);
-    </script>
+[29, 11]

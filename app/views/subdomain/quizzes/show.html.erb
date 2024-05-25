@@ -25,6 +25,12 @@
           <strong>Questions:</strong>
           <%= @quiz.questions.count %>
         </p>
+
+        <p class="card-text">
+          <strong>Description:</strong>
+          <%= @quiz.description %>
+        </p>
+        
         <div class="card-footer d-flex justify-content-evenly mt-4">
           <%= link_to 'Back', :back, class: 'btn btn-secondary' %>
           <%= link_to 'Add New Questions', new_quiz_question_path(@quiz), class: 'btn bg-dark text-light' if policy(Subdomain::Question).new? %>

@@ -1,0 +1,11 @@
+<turbo-frame id="pending">
+  <div class="col-12 col-lg-12 mb-8 mb-lg-0" data-aos="fade-left">
+    <div class="px-6 py-4 mb-6 bg-white rounded shadow border-top border-2 border-primary">
+      <div class="d-flex align-items-center justify-content-between">
+        <h3 class="h6 mb-0 p-2">Cooming Soon</h3>
+        <span class="d-inline-flex justify-content-center align-items-center text-primary bg-primary-light rounded" style="font-size: 12px; width: 24px; height: 24px"><%= @count %></span>
+      </div>
+    </div>
+    <%= render partial: "top_card_progress", collection: @quizzes_data, as: :quiz %>
+  </div>
+</turbo-frame>

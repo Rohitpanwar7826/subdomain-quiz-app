@@ -1,7 +1,6 @@
 class Subdomain::QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_quiz
-  layout 'teacher'
 
   def new
     authorize @quiz

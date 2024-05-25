@@ -5,9 +5,7 @@ class HomeController < ApplicationController
   def index
   end
 
-  private
-
-  def generate_layout_name
-    current_user.roles.pluck(:name).include?('student') ? 'student' : 'teacher'
+  def daily_progress
+    @results = Subdomain::Results::GetResultBuilder.call(current_user)
   end
 end

@@ -1,19 +1,25 @@
+nested_hash = {
+  "a" => {
+    "b" => {
+      "c" => 1,
+      "d" => 2
+    },
+    "e" => 3
+  },
+  "f" => 4
+}
 
-
-
- n = 7
-
-
-def get_fact(n)
-  puts "1"
-  puts "1"
-  start_index = 2
-  ans = 1
-  while(n >= start_index)
-    ans = start_index * ans
-    puts ans
-    start_index +=1
+def process_for_hash(hash, temp = Hash.new, keys = String.new)
+  hash.each do |key, value|
+    n_keys = keys.empty? ? key : "#{keys}.#{key}"
+    if value.is_a?(Hash)
+      process_for_hash(value, temp, n_keys)
+    else
+      temp[n_keys] = value
+    end
   end
+  temp
 end
 
-get_fact(n)
+
+puts process_for_hash(nested_hash)

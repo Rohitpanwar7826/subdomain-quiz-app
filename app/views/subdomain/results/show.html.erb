@@ -1,0 +1,45 @@
+<div data-controller="subdomain--result-charts" class="bg-dark m-6 p-5 result-chart-container">
+  <h1 class="p-2 m-2 text-light">The Result Score</h1>
+  <div class="canvas-result-container">
+    <canvas id="result-chart" class="canvas-result"></canvas>
+  </div>
+</div>
+
+<section class="bg-white py-8 mt-4 result-content">
+  <div class="container-fluid">
+    <div class="bg-white rounded shadow overflow-hidden result-content-body">
+      <div class="pt-4 pb-5 px-6 border-bottom border-secondary-light">
+        <h4 class="mb-0 text-center result-detail-title">Result Detail</h4>
+      </div>
+      <div class="px-4 table-responsive">
+        <table class="table mb-0 table-borderless table-striped small">
+          <thead>
+            <tr class="text-secondary">
+              <th class="py-3 px-6">Weight</th>
+              <th class="py-3 px-6">Your Anwser</th>
+              <th class="py-3 px-6">Correct Answer</th>
+              <th class="py-3 px-6">Correct</th>
+              <th class="py-3 px-6">Title</th>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <% @quiz_title ||= report.subdomain_quiz.title %>
+              <tr>
+                <td class="py-5 px-6"><%=report.weight%></td>
+                <td class="py-5 px-6"><%=report.result["given_answer"]%></td>
+                <td class="py-5 px-6"><%=report.result["correct_answer"]%></td>
+                <td class="py-5 px-6"><%= generate_correct_answer(report.is_correct) %></td>
+                <td class="py-5 px-6">
+                  <span class="badge bg-success"><%= @quiz_title %></span>
+                </td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+        <div class="pt-3 pb-5 text-center">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= content_tag :div, "", id: "charts_data", data: {reports: @reports} %>

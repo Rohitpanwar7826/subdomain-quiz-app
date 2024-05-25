@@ -3,7 +3,10 @@
     <%= render "count_down_timer" %>
   <%-end%>
 <%else%>
-  <%= render partial: "form", locals: { quiz: @quiz, question: @question, request_url: @has_next_question ? 
+  <%= render partial: "form", locals: { 
+    quiz: @quiz, 
+    question: @question, 
+    request_url: @has_next_question ? 
         exam_create_path(@quiz, @question) : 
         exam_final_assessment_path(@quiz, @question) } %>
 <%end%>

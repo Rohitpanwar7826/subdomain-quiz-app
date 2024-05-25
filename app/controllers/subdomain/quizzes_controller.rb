@@ -3,8 +3,7 @@ class Subdomain::QuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :initialize_quiz, only: [:new]
   before_action :find_quiz_by_param, only: [:show]
-  layout 'teacher'
-
+  before_action :set_quizzes_and_count, only: ["pending", "today", "complete"]
 
   def index
     authorize Subdomain::Quiz
@@ -35,7 +34,20 @@ class Subdomain::QuizzesController < ApplicationController
     end
   end
 
+  def pending;end
+
+  def today;end
+
+  def complete;end
+  
   private
+
+    def set_quizzes_and_count
+      response = Subdomain::Quizzes::GetQuizzes.call(params["action"])
+      @quizzes_data = response[:quizzes]
+      @count = response[:count]
+    end
+
     def initialize_quiz
       @quiz = Subdomain::Quiz.new
     end
@@ -60,7 +72,7 @@ class Subdomain::QuizzesController < ApplicationController
     end
 
     def permit_quiz_params
-      params.require(:subdomain_quiz).permit(:title, :total_questions, :is_published, :test_date, :duration, :branch, :year, :test_date_time, :test_time_hour, :test_time_minute, :test_time_ampm)
+      params.require(:subdomain_quiz).permit(:title, :total_questions, :is_published, :test_date, :duration, :branch, :year, :test_date_time, :test_time_hour, :test_time_minute, :test_time_ampm, :description)
     end
 
     def find_quiz_by_param

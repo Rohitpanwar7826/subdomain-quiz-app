@@ -14,40 +14,49 @@
     </div>
 </header>
 
-<!-- About Section -->
-<section class="about py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>About Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae augue orci.</p>
-            </div>
-            <div class="col-md-6">
-                <%= image_tag "quiz_image.jpg", alt:"Quiz Image", class: "img-fluid rounded-circle" %>
-            </div>
+<section class="py-8 my-5 bg-dark">
+  <div class="container mx-auto p-5">
+    <div class="px-8 px-md-16 bg-primary-dark rounded">
+      <div class="row">
+        <div class="col-12 col-md-6 py-12">
+          <h2 class="mb-2">
+            <span class="text-white">Elevating Skills Through Online Quizzes:</span>
+            <span class="text-warning">Your Gateway to Improvement</span>
+          </h2>
+          <p class="mb-4 small text-light">Unlock the power of online quizzes to enhance your skills! Our online quiz app provides a dynamic platform for learning and improvement. By participating in quizzes and analyzing your results, you can gain valuable insights, identify areas for growth, and take your skills to the next level..</p>
+          <a class="btn btn-sm btn-warning d-inline-flex align-items-center" href="<%= results_path %>">
+            <span class="me-2">
+              <svg width="14" height="14" viewbox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.3335 12.3333H2.3335C2.15669 12.3333 1.98712 12.2631 1.86209 12.1381C1.73707 12.013 1.66683 11.8435 1.66683 11.6666V9.66665C1.66683 9.48984 1.59659 9.32027 1.47157 9.19524C1.34654 9.07022 1.17697 8.99998 1.00016 8.99998C0.823352 8.99998 0.653782 9.07022 0.528758 9.19524C0.403734 9.32027 0.333496 9.48984 0.333496 9.66665V11.6666C0.333496 12.1971 0.54421 12.7058 0.919283 13.0809C1.29436 13.4559 1.80306 13.6666 2.3335 13.6666H4.3335C4.51031 13.6666 4.67988 13.5964 4.8049 13.4714C4.92992 13.3464 5.00016 13.1768 5.00016 13C5.00016 12.8232 4.92992 12.6536 4.8049 12.5286C4.67988 12.4036 4.51031 12.3333 4.3335 12.3333V12.3333ZM1.00016 4.99998C1.17697 4.99998 1.34654 4.92974 1.47157 4.80472C1.59659 4.67969 1.66683 4.51012 1.66683 4.33331V2.33331C1.66683 2.1565 1.73707 1.98693 1.86209 1.86191C1.98712 1.73688 2.15669 1.66665 2.3335 1.66665H4.3335C4.51031 1.66665 4.67988 1.59641 4.8049 1.47138C4.92992 1.34636 5.00016 1.17679 5.00016 0.99998C5.00016 0.823169 4.92992 0.653599 4.8049 0.528575C4.67988 0.403551 4.51031 0.333313 4.3335 0.333313H2.3335C1.80306 0.333313 1.29436 0.544027 0.919283 0.9191C0.54421 1.29417 0.333496 1.80288 0.333496 2.33331V4.33331C0.333496 4.51012 0.403734 4.67969 0.528758 4.80472C0.653782 4.92974 0.823352 4.99998 1.00016 4.99998ZM11.6668 0.333313H9.66683C9.49002 0.333313 9.32045 0.403551 9.19543 0.528575C9.0704 0.653599 9.00016 0.823169 9.00016 0.99998C9.00016 1.17679 9.0704 1.34636 9.19543 1.47138C9.32045 1.59641 9.49002 1.66665 9.66683 1.66665H11.6668C11.8436 1.66665 12.0132 1.73688 12.1382 1.86191C12.2633 1.98693 12.3335 2.1565 12.3335 2.33331V4.33331C12.3335 4.51012 12.4037 4.67969 12.5288 4.80472C12.6538 4.92974 12.8234 4.99998 13.0002 4.99998C13.177 4.99998 13.3465 4.92974 13.4716 4.80472C13.5966 4.67969 13.6668 4.51012 13.6668 4.33331V2.33331C13.6668 1.80288 13.4561 1.29417 13.081 0.9191C12.706 0.544027 12.1973 0.333313 11.6668 0.333313ZM9.66683 6.99998C9.66683 6.82317 9.59659 6.6536 9.47157 6.52858C9.34654 6.40355 9.17697 6.33331 9.00016 6.33331H7.66683V4.99998C7.66683 4.82317 7.59659 4.6536 7.47157 4.52858C7.34654 4.40355 7.17697 4.33331 7.00016 4.33331C6.82335 4.33331 6.65378 4.40355 6.52876 4.52858C6.40373 4.6536 6.3335 4.82317 6.3335 4.99998V6.33331H5.00016C4.82335 6.33331 4.65378 6.40355 4.52876 6.52858C4.40373 6.6536 4.3335 6.82317 4.3335 6.99998C4.3335 7.17679 4.40373 7.34636 4.52876 7.47138C4.65378 7.59641 4.82335 7.66665 5.00016 7.66665H6.3335V8.99998C6.3335 9.17679 6.40373 9.34636 6.52876 9.47138C6.65378 9.59641 6.82335 9.66665 7.00016 9.66665C7.17697 9.66665 7.34654 9.59641 7.47157 9.47138C7.59659 9.34636 7.66683 9.17679 7.66683 8.99998V7.66665H9.00016C9.17697 7.66665 9.34654 7.59641 9.47157 7.47138C9.59659 7.34636 9.66683 7.17679 9.66683 6.99998ZM13.0002 8.99998C12.8234 8.99998 12.6538 9.07022 12.5288 9.19524C12.4037 9.32027 12.3335 9.48984 12.3335 9.66665V11.6666C12.3335 11.8435 12.2633 12.013 12.1382 12.1381C12.0132 12.2631 11.8436 12.3333 11.6668 12.3333H9.66683C9.49002 12.3333 9.32045 12.4036 9.19543 12.5286C9.0704 12.6536 9.00016 12.8232 9.00016 13C9.00016 13.1768 9.0704 13.3464 9.19543 13.4714C9.32045 13.5964 9.49002 13.6666 9.66683 13.6666H11.6668C12.1973 13.6666 12.706 13.4559 13.081 13.0809C13.4561 12.7058 13.6668 12.1971 13.6668 11.6666V9.66665C13.6668 9.48984 13.5966 9.32027 13.4716 9.19524C13.3465 9.07022 13.177 8.99998 13.0002 8.99998Z" fill="#F1988F"></path>
+              </svg>
+            </span>
+            <span>Visit to results</span>
+          </a>
         </div>
-    </div>   
-
+      </div>
+    </div>
+  </div>
+</section>
 <section class="features bg-light py-5">
-    <div class="container">
-        <h2 class="text-center">Features</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="feature">
+    <div class="p-2">
+        <h2 class="text-left p-2 mt-2">Features</h2>
+        <div class="row p-3">
+            <div class="col-md-4 p-2 bg-dark text-light h-100">
+                <div class="p-5">
                     <i class="fas fa-check-circle fa-3x"></i>
                     <h3>Easy to Use</h3>
                     <p>Simple and intuitive interface for a smooth quiz experience.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="feature">
+            <div class="col-md-4 p-2 bg-dark text-light h-100">
+                <div class="p-5">
                     <i class="fas fa-clock fa-3x"></i>
                     <h3>Quick Quizzes</h3>
                     <p>Take short quizzes on various topics in just a few minutes.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="feature">
+            <div class="col-md-4 p-2 bg-dark text-light h-100">
+                <div class="p-5">
                     <i class="fas fa-trophy fa-3x"></i>
                     <h3>Compete and Win</h3>
                     <p>Compete with friends and earn rewards for your knowledge.</p>
@@ -57,26 +66,62 @@
     </div>
 </section>
 
-<!-- Contact Section -->
-<section class="contact py-5">
-    <div class="container">
-      <h2 class="text-center">Contact Us</h2>
-      <p class="text-center">Have questions or feedback? Reach out to us!</p>
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <form>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email">
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-          </form>
+<turbo-frame id="daily_progress" src="<%= daily_progress_home_index_path %>" loading="lazy">
+  <%= render "shared/loader_dark" %>
+</turbo-frame>
+
+<section class="py-8 p-5 top_quiz_announcement">
+  <div class="container" data-aos="fade-right">
+    <h1 class="text-light my-4">TOP FIVE QUIZ ANNOUNCEMENT</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <turbo-frame id="pending" src="<%= pending_quizzes_path %>" loading="lazy">
+          <%= render "shared/loader_dark" %>
+        </turbo-frame>
+      </div>
+      <div class="col-md-4">
+        <turbo-frame id="today" src="<%= today_quizzes_path %>" loading="lazy">
+          <%= render "shared/loader_dark" %>
+        </turbo-frame>
+      </div>
+      <div class="col-md-4">
+        <turbo-frame id="complete" src="<%= complete_quizzes_path %>" loading="lazy">
+          <%= render "shared/loader_dark" %>
+        </turbo-frame>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 my-5 py-sm-24 pb-md-32 bg-info-light position-relative overflow-hidden">
+  <div class="container position-relative">
+    <div class="mw-xl mb-20 mx-auto text-center">
+      <h2 class="mb-5">Get connected</h2>
+      <p class="fs-7 text-secondary">Contact Us for Rapid Problem Resolution: Our Team Solves Issues Within 1-2 Hours.</p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-6 mb-8 mb-lg-0">
+        <div class="mw-md mx-auto py-12 px-8 bg-white rounded-4 text-center shadow-lg p-5">
+          <div class="d-flex mb-6 mx-auto align-items-center justify-content-center bg-primary rounded-pill" style="width: 70px; height: 70px;">
+            <svg width="26" height="21" viewbox="0 0 26 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 5.16663L11.5208 12.1805C12.4165 12.7776 13.5835 12.7776 14.4792 12.1805L25 5.16663M3.66667 19.8333H22.3333C23.8061 19.8333 25 18.6394 25 17.1666V3.83329C25 2.36053 23.8061 1.16663 22.3333 1.16663H3.66667C2.19391 1.16663 1 2.36053 1 3.83329V17.1666C1 18.6394 2.19391 19.8333 3.66667 19.8333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <h6 class="fs-6 p-2">Send Email</h6>
+          <span class="d-block">rohitpawarmit@gmail.com</span>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 mb-8 mb-lg-0">
+        <div class="mw-md mx-auto py-12 px-8 bg-white rounded-4 text-center shadow-lg p-5">
+          <div class="d-flex mb-6 mx-auto align-items-center justify-content-center bg-white border rounded-pill" style="width: 70px; height: 70px;">
+            <svg width="26" height="27" viewbox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4.16667C1 2.69391 2.19391 1.5 3.66667 1.5H8.03899C8.61289 1.5 9.12241 1.86724 9.3039 2.4117L11.301 8.40295C11.5108 9.03243 11.2258 9.72041 10.6324 10.0172L7.62268 11.522C9.09233 14.7816 11.7184 17.4077 14.978 18.8773L16.4828 15.8676C16.7796 15.2742 17.4676 14.9892 18.0971 15.199L24.0883 17.1961C24.6328 17.3776 25 17.8871 25 18.461V22.8333C25 24.3061 23.8061 25.5 22.3333 25.5H21C9.95431 25.5 1 16.5457 1 5.5V4.16667Z" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <h6 class="fs-6 p-2">Call Us</h6>
+          <span class="d-block">+91 6232766621</span>
         </div>
       </div>
     </div>
+  </div>
 </section>

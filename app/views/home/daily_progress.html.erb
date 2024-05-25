@@ -1,0 +1,10 @@
+<turbo-frame id="daily_progress">
+  <section class="progress_card" data-aos="fade-left">
+    <div class="d-flex justify-content-center align-items-center flex-column p-5">
+      <h1>Daily Progress</h1>
+      <div data-controller="home" id="progress">
+      </div>
+    </div>
+  </section>
+  <%= content_tag :div, "", id: "daily_progres_data", data: {results: @results} %>
+</turbo-frame>

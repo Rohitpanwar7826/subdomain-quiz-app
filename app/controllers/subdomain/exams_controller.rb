@@ -3,7 +3,6 @@ class Subdomain::ExamsController < ApplicationController
   before_action :set_quiz, only: [:show, :create, :final_assessment, :base_line_assessment]
   before_action :set_current_question, only: [:show]
   before_action :authorize_quiz_enrollment, only: [:show, :create]
-  layout 'student'
 
   def index
   end

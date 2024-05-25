@@ -30,6 +30,9 @@
 
                 <%= form.label :year, class: "mt-3" %>
                 <%= form.select :year, options_for_select(Subdomain::Quiz.years.inject(Hash.new){ |h, (k, _)| h.merge("#{k}": k)}), {:prompt=>"Select A Year"}, class: 'form-select bg-secondary text-light mt-3' %>
+     
+                <%= form.label :description, class: "mt-3 p-1" %>
+                <%= form.text_area :description, class: 'form-control bg-secondary text-light', style: 'padding: 10px;' %>
 
                 <div class="mb-3">
                   <%= form.label :test_date, class: 'form-label mt-3' %>

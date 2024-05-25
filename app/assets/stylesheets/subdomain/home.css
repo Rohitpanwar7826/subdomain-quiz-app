@@ -1,0 +1,11 @@
+.progress_card {
+  width: 99%;
+  height: 20vh;
+  border-radius: 5px;
+  background: #e0e0e0;
+  margin: 1rem;
+  margin-bottom: 1rem;
+}
+#progress > svg {
+  border-radius: 200px;
+}

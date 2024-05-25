@@ -5,14 +5,14 @@ namespace :tenant_record do
   task create_tenant_record: :environment do
     puts "START tenant records processing at #{Time.now}"
     tenant_names = ['r-p-crane-service', 'demo-prs', 'apple', 'xyz']
-    
+
     action_planes = [
       { name: "Base Plan", price: 405, no_students: "100" },
       { name: "Standard Plan", price: 805, no_students: "200" },
       { name: "Extream Plan", price: 1005, no_students: "300" },
       { name: "Pro Plan", price: 10000,  no_students: "unlimited", is_unlimited: true },
     ]
-    
+
     users_email = ['rohitpawarmit@gmail.com', 'demo@gmail.com', 'example@gmail.com']
 
     roles = ['student', 'teacher']
@@ -42,7 +42,7 @@ namespace :tenant_record do
         users_email.map do |email|
           user = AdminUser.find_by({ email: email})
           if !user.present?
-            user = AdminUser.create({ email: email, password: '123456', password_confirmation: '123456' })  
+            user = AdminUser.create({ email: email, password: '123456', password_confirmation: '123456' })
             user.skip_confirmation!
             user.save
           end
@@ -114,7 +114,7 @@ namespace :tenant_record do
               email: Faker::Internet.email,
               year: rand(0..3),
               branch: rand(0..3),
-              password: '123456', 
+              password: '123456',
               password_confirmation: '123456')
             user.skip_confirmation!
             user.role_ids = [Role.find_by(name: ['student', 'teacher'].shuffle.first).id]

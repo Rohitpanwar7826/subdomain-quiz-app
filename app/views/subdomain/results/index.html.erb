@@ -1,0 +1,44 @@
+<div data-controller="subdomain--result-charts-index" class="bg-dark m-6 p-5 result-chart-container">
+  <h1 class="p-2 m-2 text-light">Scores</h1>
+  <div class="canvas-result-container">
+    <canvas id="result-charts-index" class="canvas-result"></canvas>
+  </div>
+</div>
+
+<div class="content result-content">
+  <div class="container-fluid">
+    <h2 class="mb-5 result-title">RESULTS</h2>
+    <div class="table-responsive m-2">
+      <table class="table table-striped custom-table result-table-index">
+        <thead>
+          <tr>
+            <th scope="col">Pass or Fail</th>
+            <th scope="col">Total Question</th>
+            <th scope="col">Quiz Title</th>
+            <th scope="col">Total Markes</th>
+            <th scope="col">Out of</th>
+            <th scope="col">View Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @results.each do |result| %>
+            <tr scope="row">
+              <td>
+                <%= pass_or_fail(result) %>
+              </td>
+              <td><span><%= result.subdomain_quiz.questions.count %></span></td>
+              <td>
+                <%= result.subdomain_quiz.title %>
+                <small class="d-block"><%= result.subdomain_quiz.branch %></small>
+              </td>
+              <td><%= result.total %></td>
+              <td><%= result.out_of %></td>
+              <td><%= link_to "Detail", result_path(result.subdomain_quiz_id) %></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= content_tag :div, "", id: "charts_data", data: {results: @results} %>

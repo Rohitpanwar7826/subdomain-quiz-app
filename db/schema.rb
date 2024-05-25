@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_10_174955) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_10_041144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_174955) do
     t.datetime "test_date_time"
     t.integer "status", default: 0
     t.string "jid"
+    t.text "description"
     t.index ["subdomain_user_id"], name: "index_subdomain_quizzes_on_subdomain_user_id"
   end
 
